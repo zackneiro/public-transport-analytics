@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  
+jobs:
+  lint:
+    runs_on: ubuntu_latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup_python@v4
+        with:
+        python_version: '3.x'
+      - name: Install dev dependencies
+        run: |
+          pip install black isort flake8
+          black --check src/
+          isort --check-only src/
+          flake8 src/
