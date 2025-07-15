@@ -5,7 +5,6 @@ import sqlite3 as sql
 
 
 def main() -> None:
-
     # read csv file to understand the base of schema.
     """
     table: DataFrame = pd.read_csv("/workspaces/public-transport-analytics/required_data/data/gtfs/stop_times.txt",

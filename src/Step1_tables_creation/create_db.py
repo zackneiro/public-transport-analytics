@@ -3,7 +3,6 @@ import sqlite3 as sql
 
 
 def main():
-
     # Open gtfs.db file and prepare connection.
     connection: Connection = sql.connect(
         "/workspaces/public-transport-analytics/gtfs.db"

@@ -5,7 +5,6 @@ import sqlite3 as sql
 
 
 def main() -> None:
-
     # At first, I read a file and preview rows to check their types.
     """trips_db : DataFrame = pd.read_csv(
     "/workspaces/public-transport-analytics/required_data/data/gtfs/trips.txt",

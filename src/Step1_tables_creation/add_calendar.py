@@ -5,7 +5,6 @@ import sqlite3 as sql
 
 
 def main() -> None:
-
     # read the file and check names of the rows I need.
     """table : DataFrame = pd.read_csv(
     "/workspaces/public-transport-analytics/required_data/data/gtfs/calendar.txt",
