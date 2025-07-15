@@ -1,5 +1,5 @@
-from sqlite3 import Connection, Cursor
 import sqlite3 as sql
+from sqlite3 import Connection, Cursor
 
 
 def main():

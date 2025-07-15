@@ -1,6 +1,9 @@
-import sqlite3 as sql, pandas as pd, networkx as nx
-import matplotlib.pyplot as plt
+import sqlite3 as sql
 from sqlite3 import Connection, Cursor
+
+import matplotlib.pyplot as plt
+import networkx as nx
+import pandas as pd
 from pandas import DataFrame
 
 
