@@ -2,16 +2,15 @@ import sqlite3 as sql, pandas as pd
 from pandas import DataFrame
 from sqlite3 import Connection, Cursor
 
+
 def main() -> None:
     """
     Creates and saves the edges of the centrality to the dataframe.
     """
-    
+
     # Creates connections to the database.
-    conn: Connection = sql.connect(
-        "/workspaces/public-transport-analytics/gtfs.db"
-        )
-    
+    conn: Connection = sql.connect("/workspaces/public-transport-analytics/gtfs.db")
+
     # creating the variable, which stores edges of the network.
     edge_df: DataFrame = pd.read_sql_query(
         """SELECT DISTINCT
@@ -23,14 +22,15 @@ def main() -> None:
         stops_time AS st2
         ON st1.trip_id = st2.trip_id
         AND st2.stop_sequence = st1.stop_sequence + 1;""",
-        conn
+        conn,
     )
 
     # preview for the verification.
     print(edge_df.head())
-    
+
     # close connection.
     conn.close()
+
 
 if __name__ == "__main__":
     main()

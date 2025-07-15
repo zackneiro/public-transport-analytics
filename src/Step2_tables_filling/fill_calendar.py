@@ -4,7 +4,8 @@ from typing import List, Tuple
 import pandas as pd
 import sqlite3 as sql
 
-def main()-> None:
+
+def main() -> None:
     """
     Function fills the "calendar" table in the SQL database.
     """
@@ -17,10 +18,19 @@ def main()-> None:
     # create dataframe and save the data to it.
     table_df: DataFrame = pd.read_csv(
         "/workspaces/public-transport-analytics/required_data/data/gtfs/calendar.txt",
-        usecols = ["service_id", "monday", "tuesday", "wednesday",
-                    "thursday", "friday", "saturday", "sunday",
-                    "start_date", "end_date"]
-        )
+        usecols=[
+            "service_id",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday",
+            "start_date",
+            "end_date",
+        ],
+    )
     # create a query.
     insert_sql: str = """INSERT OR IGNORE INTO calendar(
                     service_id,
@@ -29,10 +39,9 @@ def main()-> None:
                     sunday, start_date, end_date)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"""
     # create rows.
-    rows: List[Tuple[str, int, int, int, int,
-                      int, int, int, str]] = list(
-                          table_df.itertuples(index=False, name=None)
-                      )
+    rows: List[Tuple[str, int, int, int, int, int, int, int, str]] = list(
+        table_df.itertuples(index=False, name=None)
+    )
     # send query with rows (executemany).
     db_cursor.executemany(insert_sql, rows)
     # commit changes
@@ -42,6 +51,7 @@ def main()-> None:
     print("Loaded files: ", db_cursor.fetchone()[0])
 
     db_connection.close()
+
 
 if __name__ == "__main__":
     main()

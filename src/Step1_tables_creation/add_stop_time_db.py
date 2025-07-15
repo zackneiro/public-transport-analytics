@@ -3,6 +3,7 @@ from sqlite3 import Connection, Cursor
 import pandas as pd
 import sqlite3 as sql
 
+
 def main() -> None:
 
     # read csv file to understand the base of schema.
@@ -22,13 +23,16 @@ def main() -> None:
     """
 
     # create connection with the data base.
-    connection: Connection = sql.connect('/workspaces/public-transport-analytics/gtfs.db')
+    connection: Connection = sql.connect(
+        "/workspaces/public-transport-analytics/gtfs.db"
+    )
 
     # create cursor.
     cursor: Cursor = connection.cursor()
 
     # create the table.
-    cursor.execute("""CREATE TABLE IF NOT EXISTS stops_time(
+    cursor.execute(
+        """CREATE TABLE IF NOT EXISTS stops_time(
                    trip_id TEXT,
                    stop_id TEXT,
                    arrival_time TEXT,
@@ -41,19 +45,16 @@ def main() -> None:
     connection.commit()
 
     # check for existence
-    cursor.execute(
-        "SELECT name FROM sqlite_master WHERE type='table';"
-    )
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     print(cursor.fetchall())
 
     # check the schema
-    cursor.execute(
-        "PRAGMA table_info(stops_time);"
-    )
+    cursor.execute("PRAGMA table_info(stops_time);")
     print(cursor.fetchall())
 
     # close connection.
     connection.close()
+
 
 if __name__ == "__main__":
     main()
