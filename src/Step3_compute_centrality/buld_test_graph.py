@@ -1,7 +1,6 @@
 import sqlite3 as sql
-from sqlite3 import Connection, Cursor
+from sqlite3 import Connection
 
-import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 from pandas import DataFrame
@@ -21,9 +20,6 @@ def main() -> None:
 
     # Create connection:
     conn: Connection = sql.connect("/workspaces/public-transport-analytics/gtfs.db")
-
-    # Create cursor.
-    cursor: Cursor = conn.cursor()
 
     # Create a DataFrame variable, which stores edges data.
     edge_df: DataFrame = pd.read_sql_query(
@@ -53,7 +49,13 @@ def main() -> None:
         G.add_edge(src, dst)
 
     # Confirm the graph size:
-    print("Graph has", G.number_of_nodes(), "nodes and", G.number_of_edges(), "egdes")
+    print(
+        "Graph has",
+        G.number_of_nodes(),
+        "nodes and",
+        G.number_of_edges(),
+        "egdes",
+    )
 
     # Start to compute closeness centrality.
     # Create a variable to compute closeness centrality and store it.

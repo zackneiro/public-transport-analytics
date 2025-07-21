@@ -13,7 +13,8 @@ def main() -> None:
 
     # create DataFrame to save the data from the file.
     stop_times_df: DataFrame = pd.read_csv(
-        "/workspaces/public-transport-analytics/required_data/data/gtfs/stop_times.txt",
+        "/workspaces/public-transport-analytics/"
+        "required_data/data/gtfs/stop_times.txt",
         usecols=[
             "trip_id",
             "stop_id",
@@ -24,7 +25,13 @@ def main() -> None:
     )
 
     stop_times_df = stop_times_df[
-        ["trip_id", "stop_id", "arrival_time", "departure_time", "stop_sequence"]
+        [
+            "trip_id",
+            "stop_id",
+            "arrival_time",
+            "departure_time",
+            "stop_sequence",
+        ]
     ]
 
     # create connection to the database.

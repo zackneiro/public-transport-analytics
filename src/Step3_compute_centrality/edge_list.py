@@ -1,5 +1,5 @@
 import sqlite3 as sql
-from sqlite3 import Connection, Cursor
+from sqlite3 import Connection
 
 import pandas as pd
 from pandas import DataFrame

@@ -14,10 +14,10 @@ def main():
     # create a table in the dtfs.db via cursor.
 
     cursor.execute(
-        """CREATE TABLE IF NOT EXISTS stops ( 
+        """CREATE TABLE IF NOT EXISTS stops (
     stop_id INTEGER PRIMARY KEY,
-    stop_name TEXT, 
-    stop_lat REAL, 
+    stop_name TEXT,
+    stop_lat REAL,
     stop_lon REAL);"""
     )
     connection.commit()

@@ -1,9 +1,6 @@
 import sqlite3 as sql
 from sqlite3 import Connection, Cursor
 
-import pandas as pd
-from pandas import DataFrame
-
 
 def main() -> None:
     # read the file and check names of the rows I need.

@@ -1,4 +1,3 @@
 [flake8]
 exclude = gtfs.db, required_data
-
-max-lin_length = 79
+max-line-length = 88

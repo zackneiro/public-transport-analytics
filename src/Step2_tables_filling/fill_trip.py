@@ -15,11 +15,13 @@ def main() -> None:
     # At first, I prepare DataFrame, connection, cursor, sql query.
     # DataFrame.
     trip1_df: DataFrame = pd.read_csv(
-        "/workspaces/public-transport-analytics/required_data/data/gtfs/trips.txt",
+        """/workspaces/public-transport-analytics/
+        required_data/data/gtfs/trips.txt""",
         usecols=["trip_id", "route_id", "service_id"],
     )
     trip2_df: DataFrame = pd.read_csv(
-        "/workspaces/public-transport-analytics/required_data/data/gtfs/trips2.txt",
+        """/workspaces/public-transport-analytics/
+        required_data/data/gtfs/trips2.txt""",
         usecols=["trip_id", "route_id", "service_id"],
     )
 
@@ -39,7 +41,7 @@ def main() -> None:
 
     # SQL query.
     query_insert = """
-    INSERT OR IGNORE INTO trips (trip_id, route_id, service_id) 
+    INSERT OR IGNORE INTO trips (trip_id, route_id, service_id)
     VALUES(?, ?, ?);
     """
     # Prepare the data for insertion.

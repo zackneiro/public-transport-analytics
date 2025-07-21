@@ -1,14 +1,13 @@
 import sqlite3 as sql
 from sqlite3 import Connection, Cursor
 
-import pandas as pd
-from pandas import DataFrame
-
 
 def main() -> None:
     # read csv file to understand the base of schema.
     """
-    table: DataFrame = pd.read_csv("/workspaces/public-transport-analytics/required_data/data/gtfs/stop_times.txt",
+    table: DataFrame =
+        pd.read_csv(
+        "/workspaces/public-transport-analytics/required_data/data/gtfs/stop_times.txt",
                         nrows=0)
     """
     # check the types of the rows and write a schema.

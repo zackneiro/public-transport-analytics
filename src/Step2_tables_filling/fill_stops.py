@@ -9,7 +9,7 @@ from pandas import DataFrame
 def main() -> None:
     # Create a variable and save data of the columns I need.
     table_db: DataFrame = pd.read_csv(
-        "/workspaces/public-transport-analytics/required_data/data/gtfs/stops.txt",
+        "/workspaces/public-transport-analytics/" "required_data/data/gtfs/stops.txt",
         usecols=["stop_id", "stop_name", "stop_lat", "stop_lon"],
     )
 

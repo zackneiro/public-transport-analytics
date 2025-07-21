@@ -18,7 +18,8 @@ def main() -> None:
     db_cursor: Cursor = db_connection.cursor()
     # create dataframe and save the data to it.
     table_df: DataFrame = pd.read_csv(
-        "/workspaces/public-transport-analytics/required_data/data/gtfs/calendar.txt",
+        "/workspaces/public-transport-analytics/"
+        "required_data/data/gtfs/calendar.txt",
         usecols=[
             "service_id",
             "monday",
