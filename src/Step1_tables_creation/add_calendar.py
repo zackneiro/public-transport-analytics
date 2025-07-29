@@ -1,9 +1,12 @@
 import sqlite3 as sql
 from sqlite3 import Connection, Cursor
+from typing import Final
 
-DB_PATH = "/workspaces/public-transport-analytics/gtfs.db"
-TABLE_SCHEMA = """
-CREATE TABLE IF NOT EXISTS calendar(
+DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+CREATE_CALENDAR_TABLE_SQL: Final[
+    str
+] = """
+CREATE TABLE IF NOT EXISTS calendar (
     service_id TEXT PRIMARY KEY,
     monday TEXT,
     uesday TEXT,
@@ -19,45 +22,26 @@ CREATE TABLE IF NOT EXISTS calendar(
 
 
 def main() -> None:
-    """
-    This code creates the 'calendar table' in the GTFS database
-    if it doesn't exist.
+    """Create the 'calendar' table in the GTFS SQLie database."""
 
-    This function connects to the SQLite database at gtfs.db, then
-    executes a CREATE TABLE IF NOT EXISTS for the 'calendar', table
-    with coloumns mathcing the GTFS schema.
-    """
+    # Connect to the GTFS database and create a cursor
+    conn: Connection = sql.connect(DB_PATH)
+    cur: Cursor = conn.cursor()
 
-    # Table's schema:
-    # service_id TEXT PRIMARY KEY,
-    # monday     TEXT,
-    # tuesday    TEXT,
-    # wednesday  TEXT,
-    # thursday   TEXT,
-    # friday     TEXT,
-    # saturday   TEXT,
-    # sunday     TEXT,
-    # start_date TEXT,
-    # end_date   TEXT
+    # Create the table in GTFS database
+    cur.execute(CREATE_CALENDAR_TABLE_SQL)
+    conn.commit()
 
-    # Connect to the GTFS SQLite database
-    connection_db: Connection = sql.connect(DB_PATH)
-    cursor: Cursor = connection_db.cursor()
+    # Verify the table's existence
+    cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    print(cur.fetchall())
 
-    # Create 'calendar' table if missing
-    cursor.execute(TABLE_SCHEMA)
+    # Verfiy the table's schema
+    cur.execute("PRAGMA table_info('calendar')")
+    print(cur.fetchall())
 
-    connection_db.commit()
-
-    # Verify the table's exist
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    print(cursor.fetchall())
-
-    # Inspect the 'calendar' schema
-    cursor.execute("PRAGMA table_info('calendar')")
-    print(cursor.fetchall())
-
-    connection_db.close()
+    # Close the connection
+    conn.close()
 
 
 if __name__ == "__main__":

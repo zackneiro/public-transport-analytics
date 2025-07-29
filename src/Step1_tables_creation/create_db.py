@@ -1,42 +1,44 @@
 import sqlite3 as sql
 from sqlite3 import Connection, Cursor
+from typing import Final
 
-
-def main():
-    # Open gtfs.db file and prepare connection.
-    connection: Connection = sql.connect(
-        "/workspaces/public-transport-analytics/gtfs.db"
-    )
-
-    # create a cursor.
-    cursor: Cursor = connection.cursor()
-
-    # create a table in the dtfs.db via cursor.
-
-    cursor.execute(
-        """CREATE TABLE IF NOT EXISTS stops (
+DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+CREATE_STOPS_TABLE_SQL: Final[
+    str
+] = """
+CREATE TABLE IF NOT EXISTS stops (
     stop_id INTEGER PRIMARY KEY,
     stop_name TEXT,
     stop_lat REAL,
-    stop_lon REAL);"""
-    )
-    connection.commit()
-
-    # send the query to sqlite_master to list tables.
-    cursor.execute("SELECT name FROM sqlite_master WHERE type= 'table';")
-    # Retrive all matching rows
-    tables = cursor.fetchall()
-    print("Tables in the database: ", tables)
-
-    # Need to get the column info and check it.
-    # sending query with cursor.
-    cursor.execute("PRAGMA table_info('stops');")
-    # Retrive all matching tables.
-    schema = cursor.fetchall()
-    print("table's schema: ", schema)
-
-    # Close connection.
-    connection.close()
+    stop_lon REAL
+);
+"""
 
 
-main()
+def main() -> None:
+    """Create the 'stops' table in the GTFS SQLite database."""
+
+    # Create connection to the GTFS table and a cursor
+    conn: Connection = sql.connect(DB_PATH)
+    cur: Cursor = conn.cursor()
+
+    # Create the table in the GTFS database
+    cur.execute(CREATE_STOPS_TABLE_SQL)
+    conn.commit()
+
+    # Verfiy that the table exists
+    conn.execute("SELECT name FROM sqlite_master WHERE type= 'table';")
+    tables = cur.fetchall()
+    print("Tables in the database:", tables)
+
+    # Verify the table schema
+    cur.execute("PRAGMA table_info('stops');")
+    schema = cur.fetchall()
+    print("table's schema:", schema)
+
+    # Close the connection
+    conn.close()
+
+
+if __name__ == "__main__":
+    main()
