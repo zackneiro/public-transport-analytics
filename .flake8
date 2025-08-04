@@ -1,3 +1,0 @@
-[flake8]
-exclude = gtfs.db, required_data
-max-line-length = 88
