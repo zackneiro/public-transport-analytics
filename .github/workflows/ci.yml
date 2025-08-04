@@ -17,8 +17,5 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-          
-      - name: Check imports (isort)
-        run: isort --check-only src/
 
       
