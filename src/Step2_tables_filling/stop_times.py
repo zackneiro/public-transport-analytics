@@ -1,20 +1,32 @@
 import sqlite3 as sql
 from sqlite3 import Connection, Cursor
-from typing import List, Tuple
+from typing import Final, List, Tuple
 
 import pandas as pd
 from pandas import DataFrame
 
+STOP_TIME_CSV_PATH: Final[str] = (
+    "/workspaces/public-transport-analytics/"
+    "required_data/data/gtfs/stop_times.txt"
+)
+DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+INSERT_INTO_STOPS_TIME_SQL: Final[str] = """
+INSERT OR IGNORE INTO stops_time (
+    trip_id, 
+    stop_id, 
+    arrival_time, 
+    departure_time, 
+    stop_sequence
+) VALUES(?, ?, ?, ?, ?);
+"""
+
 
 def main() -> None:
-    """
-    This code fills the table "stop_times" in the database.
-    """
+    """Populate the stop_times table from GTFS stop_times_file.txt"""
 
-    # create DataFrame to save the data from the file.
+    # Read CSV file and store data in it
     stop_times_df: DataFrame = pd.read_csv(
-        "/workspaces/public-transport-analytics/"
-        "required_data/data/gtfs/stop_times.txt",
+        STOP_TIME_CSV_PATH,
         usecols=[
             "trip_id",
             "stop_id",
@@ -24,6 +36,7 @@ def main() -> None:
         ],
     )
 
+    # Verify the exact order of the dataframe
     stop_times_df = stop_times_df[
         [
             "trip_id",
@@ -34,33 +47,26 @@ def main() -> None:
         ]
     ]
 
-    # create connection to the database.
-    connection_db: Connection = sql.connect(
-        "/workspaces/public-transport-analytics/gtfs.db"
-    )
+    # Connect to the GTFS database and create a cursor
+    conn: Connection = sql.connect(DB_PATH)
+    cur: Cursor = conn.cursor()
 
-    # create cursor.
-    curosr_db: Cursor = connection_db.cursor()
-
-    # create insert_sql; query-pattern which I use for insertion.
-    insert_sql = """INSERT OR IGNORE INTO stops_time(
-    trip_id, stop_id, arrival_time, departure_time, stop_sequence)
-    VALUES(?, ?, ?, ?, ?);"""
-
-    # create variable and save files rows in it.
+    # Create a list with the rows
     rows: List[Tuple[str, str, str, str, int]] = list(
         stop_times_df.itertuples(index=False, name=None)
     )
 
-    # insert rows to the table of the database.
-    connection_db.executemany(insert_sql, rows)
-    # commit changes
-    connection_db.commit()
-    # check
-    curosr_db.execute("SELECT COUNT(*) FROM stops_time;")
-    print("Loaded files: ", curosr_db.fetchone()[0])
+    # Insert data from GTFS file to the table
+    cur.executemany(INSERT_INTO_STOPS_TIME_SQL, rows)
+    conn.commit()
+    
+    # Verify processed work
+    cur.execute("SELECT COUNT(*) FROM stops_time;")
+    loaded: int = cur.fetchone()[0]
+    print("Loaded files:", loaded)
 
-    connection_db.close()
+    # Close the connection
+    conn.close()
 
 
 if __name__ == "__main__":
