@@ -1,4 +1,4 @@
-import sqlite3 as sql
+import sqlite3 as sql3
 from sqlite3 import Connection, Cursor
 from typing import Final, List, Tuple
 
@@ -41,7 +41,7 @@ def main() -> None:
     df_trips = df_trips.drop_duplicates(subset=["trip_id"])
 
     # Connect to the GTFS database and create cursor
-    conn: Connection = sql.connect(DB_PATH)
+    conn: Connection = sql3.connect(DB_PATH)
     cur: Cursor = conn.cursor()
 
     # Prepare the data for insertion

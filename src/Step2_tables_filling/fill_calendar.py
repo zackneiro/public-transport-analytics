@@ -1,4 +1,4 @@
-import sqlite3 as sql
+import sqlite3 as sql3
 from sqlite3 import Connection, Cursor
 from typing import Final, List, Tuple
 
@@ -24,7 +24,7 @@ def main() -> None:
     """Populate the GTFS `calendar` table from calendar.txt."""
 
     # Connect to the SQLite database and create a cursor
-    conn: Connection = sql.connect(DB_PATH)
+    conn: Connection = sql3.connect(DB_PATH)
     cur: Cursor = conn.cursor()
 
     # Load calendar.txt into a DataFrame with selected columns

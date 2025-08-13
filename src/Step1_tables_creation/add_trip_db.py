@@ -1,4 +1,4 @@
-import sqlite3 as sql
+import sqlite3 as sql3
 from sqlite3 import Connection, Cursor
 from typing import Final
 
@@ -18,7 +18,7 @@ def main() -> None:
     """Create the 'trips' table in the GTFS SQLite database."""
 
     # Connect to the GTFS database and create a cursor
-    conn: Connection = sql.connect(DB_PATH)
+    conn: Connection = sql3.connect(DB_PATH)
     cur: Cursor = conn.cursor()
 
     # Execute table creation

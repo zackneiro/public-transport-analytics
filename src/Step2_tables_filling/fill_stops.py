@@ -1,4 +1,4 @@
-import sqlite3 as sql
+import sqlite3 as sql3
 from sqlite3 import Connection, Cursor
 from typing import Final, List, Tuple
 
@@ -31,7 +31,7 @@ def main() -> None:
     )
 
     # Connect to the GTFS database and create a cursor
-    conn: Connection = sql.connect(DB_PATH)
+    conn: Connection = sql3.connect(DB_PATH)
     cur: Cursor = conn.cursor()
 
     # Create a list of rows
