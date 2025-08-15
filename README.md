@@ -35,10 +35,10 @@ python -m src.Step2_tables_filling.fill_calendar
 python -m src.Step3_compute_centrality.build_test_graph.py
 ```
 
-## Project_structure
-
-|── images/                        # store result of the top10 stops you should have in the end 
-|── required_data/                 # put GTFS .txt files here (not tracked)
+## Project structure
+```
+├── images/                        # store result of the top10 stops you should have in the end 
+├──required_data/                  # put GTFS .txt files here (not tracked)
 ├── src/
 │   ├── Step1_tables_creation/     # create SQLite schema
 │   ├── Step2_tables_filling/      # load GTFS files into tables
@@ -46,6 +46,7 @@ python -m src.Step3_compute_centrality.build_test_graph.py
 ├── gtfs.db                        # generated SQLite database
 ├── README.md
 └──  requirements.txt
+```
 
 ## Data
 - Source: HSL GTFS https://infopalvelut.storage.hsldev.com/gtfs/hsl.zip
