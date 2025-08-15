@@ -1,5 +1,3 @@
-## Title
-# public-transport-analytics
 Hello! This reprository shows my practice with the Public Transport Network &amp; Timetables of the Helsinki dataset.
 This project allows to analyze this data set and find the closeness centrality stops for a better work of planning daily trips.
 Why centrality closeness? Because it is undirected, unweighted, and that's why it reflects the fewest hops across the network.
