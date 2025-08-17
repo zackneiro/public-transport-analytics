@@ -11,7 +11,7 @@ INSERT_INTO_CALENDAR_SQL: Final[str] = """
 INSERT OR IGNORE INTO calendar (
     service_id,
     monday, tuesday, wednesday,
-    thursday, friday, saturday,
+    thursday, x, saturday,
     sunday, start_date, end_date
 ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 """

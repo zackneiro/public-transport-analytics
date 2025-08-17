@@ -9,7 +9,13 @@ Why centrality closeness? Because it is undirected, unweighted, and that's why i
 ## Quickstart
 
 ### Command Line
-```bash 
+```bash
+# Create the temporary folder and clone reprository there
+mkdir -p ~/tmp && cd ~/tmp
+git clone https://github.com/zackneiro/public-transport-analytics.git
+cd public-transport-analytics
+
+# Prepare enviroment
 python -m venv .venv
 # macOS/Linux
 source .venv/bin/activate
@@ -18,11 +24,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Download the GTFS data of HSL using command line
-macOS/Linux
+# macOS/Linux
 curl -fL -o required_data/data/gtfs/hsl_gtfs.zip "https://infopalvelut.storage.hsldev.com/gtfs/hsl.zip"
 unzip -o required_data/data/gtfs/hsl_gtfs.zip -d required_data/data/gtfs
 
-Windows PowerShell
+# Windows PowerShell
 Invoke-WebRequest -Uri "https://infopalvelut.storage.hsldev.com/gtfs/hsl.zip" -OutFile "required_data\data\gtfs\hsl_gtfs.zip"
 Expand-Archive -Path "required_data\data\gtfs\hsl_gtfs.zip" -DestinationPath "required_data\data\gtfs" -Force
 

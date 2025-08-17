@@ -9,7 +9,7 @@ CREATE_CALENDAR_TABLE_SQL: Final[
 CREATE TABLE IF NOT EXISTS calendar (
     service_id TEXT PRIMARY KEY,
     monday TEXT,
-    uesday TEXT,
+    tuesday TEXT,
     wednesday TEXT,
     thursday TEXT,
     friday TEXT,
