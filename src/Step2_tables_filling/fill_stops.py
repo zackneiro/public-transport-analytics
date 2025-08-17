@@ -5,13 +5,8 @@ from typing import Final, List, Tuple
 import pandas as pd
 from pandas import DataFrame
 
-DB_PATH: Final[str] = (
-    "/workspaces/public-transport-analytics/gtfs.db"
-)
-STOPS_CSV_PATH: Final[str] = (
-    "/workspaces/public-transport-analytics/"
-    "required_data/data/gtfs/stops.txt"
-)
+DB_PATH: Final[str] = "gtfs.db"
+STOPS_CSV_PATH: Final[str] = ("required_data/data/gtfs/stops.txt")
 SQL_INSERT_QUERY: Final[str] = """
 INSERT OR IGNORE INTO stops (
     stop_id,

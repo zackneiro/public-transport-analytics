@@ -17,6 +17,15 @@ source .venv/bin/activate
 # .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
+# Download the GTFS data of HSL using command line
+macOS/Linux
+curl -fL -o required_data/data/gtfs/hsl_gtfs.zip "https://infopalvelut.storage.hsldev.com/gtfs/hsl.zip"
+unzip -o required_data/data/gtfs/hsl_gtfs.zip -d required_data/data/gtfs
+
+Windows PowerShell
+Invoke-WebRequest -Uri "https://infopalvelut.storage.hsldev.com/gtfs/hsl.zip" -OutFile "required_data\data\gtfs\hsl_gtfs.zip"
+Expand-Archive -Path "required_data\data\gtfs\hsl_gtfs.zip" -DestinationPath "required_data\data\gtfs" -Force
+
 # 1) Create tables 
 python -m src.Step1_tables_creation.create_db
 python -m src.Step1_tables_creation.add_trip_db

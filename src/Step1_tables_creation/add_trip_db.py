@@ -2,7 +2,7 @@ import sqlite3 as sql3
 from sqlite3 import Connection, Cursor
 from typing import Final
 
-DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+DB_PATH: Final[str] = "gtfs.db"
 CREATE_TRIPS_TABLE_SQL: Final[
     str
 ] = """

@@ -5,14 +5,8 @@ from typing import Final, List, Tuple
 import pandas as pd
 from pandas import DataFrame
 
-TRIPS1_CSV_PATH: Final[str] = (
-    "/workspaces/public-transport-analytics/"
-    "required_data/data/gtfs/trips.txt"
-)
-TRIPS2_CSV_PATH: Final[str] = (
-    "/workspaces/public-transport-analytics"
-    "/required_data/data/gtfs/trips2.txt"
-)
+TRIPS1_CSV_PATH: Final[str] = ("required_data/data/gtfs/trips.txt")
+TRIPS2_CSV_PATH: Final[str] = ("required_data/data/gtfs/trips2.txt")
 INSERT_TRIPS_SQL: Final[str] = """
 INSERT OR IGNORE INTO trips (
     trip_id, 
@@ -20,7 +14,7 @@ INSERT OR IGNORE INTO trips (
     service_id
 ) VALUES (?, ?, ?);
 """
-DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+DB_PATH: Final[str] = "gtfs.db"
 
 
 def main() -> None:

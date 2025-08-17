@@ -5,11 +5,8 @@ from typing import Final, List, Tuple
 import pandas as pd
 from pandas import DataFrame
 
-DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
-CALENDAR_CSV_PATH: Final[str] = (
-"/workspaces/public-transport-analytics/"
-"required_data/data/gtfs/calendar.txt"
-)
+DB_PATH: Final[str] = "gtfs.db"
+CALENDAR_CSV_PATH: Final[str] = ("required_data/data/gtfs/calendar.txt")
 INSERT_INTO_CALENDAR_SQL: Final[str] = """
 INSERT OR IGNORE INTO calendar (
     service_id,

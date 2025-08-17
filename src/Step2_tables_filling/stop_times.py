@@ -5,11 +5,8 @@ from typing import Final, List, Tuple
 import pandas as pd
 from pandas import DataFrame
 
-STOP_TIME_CSV_PATH: Final[str] = (
-    "/workspaces/public-transport-analytics/"
-    "required_data/data/gtfs/stop_times.txt"
-)
-DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+STOP_TIME_CSV_PATH: Final[str] = ("required_data/data/gtfs/stop_times.txt")
+DB_PATH: Final[str] = "gtfs.db"
 INSERT_INTO_STOPS_TIME_SQL: Final[str] = """
 INSERT OR IGNORE INTO stops_time (
     trip_id, 

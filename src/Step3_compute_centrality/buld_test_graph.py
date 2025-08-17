@@ -6,7 +6,7 @@ import pandas as pd
 from pandas import DataFrame
 
 
-DB_PATH: Final[str] = "/workspaces/public-transport-analytics/gtfs.db"
+DB_PATH: Final[str] = "gtfs.db"
 EDGE_LIST_SQL: Final[str] = """
 SELECT DISTINCT
     st1.stop_id AS source,
